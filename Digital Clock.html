@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #212121;
+            color: #00ff00;
+        }
+
+        #clock {
+            display: inline-block;
+            font-size: 48px;
+            letter-spacing: 10px;
+            border: 3px solid #00ff00;
+            padding: 10px;
+            box-shadow: 0 0 10px #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        function displayTime() {
+            let currentTime = new Date();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            let seconds = currentTime.getSeconds();
+
+            // Add leading zeros to hours, minutes, and seconds if they are less than 10
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            // Choose between 12-hour or 24-hour format as per your requirement
+            let format = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+
+            let timeString = hours + ":" + minutes + ":" + seconds + " " + format;
+            document.getElementById("clock").innerText = timeString;
+        }
+
+        // Update the time every second
+        setInterval(displayTime, 1000);
+
+        // Display the time immediately upon page load
+        displayTime();
+    </script>
+</body>
+</html>
